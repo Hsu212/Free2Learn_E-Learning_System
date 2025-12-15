@@ -1,0 +1,80 @@
+/* src/assets/main.css */
+
+:root {
+  /* --- LIGHT THEME (Default) --- */
+  --primary-color: #16a34a;       /* Vibrant Green */
+  --primary-hover: #15803d;       /* Darker Green */
+  --accent-color: #064e3b;        /* Deep Forest Green */
+  
+  --bg-body: #f0fdf4;             /* Very light mint/white */
+  --bg-card: #ffffff;             /* Pure White */
+  --bg-secondary: #dcfce7;        /* Light green accent bg */
+  
+  --text-main: #1a1a1a;           /* Near Black */
+  --text-muted: #4b5563;          /* Dark Gray */
+  --text-inverse: #ffffff;        /* White text for buttons */
+  
+  --border-color: #bbf7d0;        /* Light green border */
+  --success-color: #16a34a;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] {
+  /* --- DARK THEME --- */
+  --primary-color: #22c55e;       /* Brighter Green for contrast */
+  --primary-hover: #4ade80;       /* Lighter Green on hover */
+  --accent-color: #86efac;        /* Light green accent */
+  
+  --bg-body: #050505;             /* Near Black */
+  --bg-card: #121212;             /* Dark Gray/Black card */
+  --bg-secondary: #064e3b;        /* Dark forest green accent bg */
+  
+  --text-main: #f0fdf4;           /* Off-white */
+  --text-muted: #9ca3af;          /* Light Gray */
+  --text-inverse: #000000;        /* Black text for buttons */
+  
+  --border-color: #14532d;        /* Dark green border */
+  --success-color: #22c55e;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-body);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-main);
+  margin-top: 0;
+  font-weight: 700;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
