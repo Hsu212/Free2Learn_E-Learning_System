@@ -42,14 +42,15 @@
           </div>
           
           <div class="video-section">
-            <div class="video-placeholder" v-if="currentLesson.videoUrl === '#'">
+            <div class="video-placeholder" v-if="!getEmbedUrl(currentLesson.videoUrl)">
               <p>🎥 <strong>Video Resource</strong></p>
-              <p>No video link provided. (Update <code>src/data/courses.js</code>)</p>
+              <p>No video available for this lesson.</p>
             </div>
+            
             <iframe 
               v-else
               class="video-frame"
-              :src="currentLesson.videoUrl" 
+              :src="getEmbedUrl(currentLesson.videoUrl)" 
               title="Lesson Video" 
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -93,6 +94,22 @@ import LessonList from '@/components/LessonList.vue';
 const route = useRoute();
 const course = ref(null);
 const selectedLessonId = ref(null);
+
+// --- NEW HELPER FUNCTION ---
+const getEmbedUrl = (url) => {
+  // If url is missing, empty, or just a placeholder '#', return null
+  if (!url || url === '#') return null;
+
+  // Regex to find the video ID from various YouTube URL formats
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+
+  // Return the embed URL if we find a valid ID (11 chars)
+  return (match && match[2].length === 11)
+    ? `https://www.youtube.com/embed/${match[2]}`
+    : null;
+};
+// ---------------------------
 
 const loadCourse = (id) => {
   const courseData = getCourseById(id);
@@ -287,7 +304,7 @@ const toggleCompletion = () => {
   font-size: 1.1rem;
   line-height: 1.8;
   color: var(--text-muted);
-  white-space: pre-wrap; /* Preserves newlines from the dummy data */
+  white-space: pre-wrap;
 }
 
 .viewer-footer {
