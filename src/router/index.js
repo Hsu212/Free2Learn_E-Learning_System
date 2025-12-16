@@ -2,11 +2,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import CourseDetail from '@/views/CourseDetail.vue';
+import LessonView from '@/views/LessonView.vue'; // <-- NEW IMPORT
 import AuthPage from '@/views/AuthPage.vue';
 import ProfileView from '@/views/ProfileView.vue';
 import MyCoursesView from '@/views/MyCoursesView.vue';
-import SettingsView from '@/views/SettingsView.vue'; // <-- Import
-import HelpCenterView from '@/views/HelpCenterView.vue'; // <-- Import
+import SettingsView from '@/views/SettingsView.vue'; 
+import HelpCenterView from '@/views/HelpCenterView.vue'; 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,12 +33,12 @@ const router = createRouter({
       component: MyCoursesView,
     },
     {
-      path: '/settings', // <-- New Route
+      path: '/settings',
       name: 'settings',
       component: SettingsView,
     },
     {
-      path: '/help', // <-- New Route
+      path: '/help',
       name: 'help',
       component: HelpCenterView,
     },
@@ -47,6 +48,14 @@ const router = createRouter({
       component: CourseDetail,
       props: true,
     },
+    // --- NEW ROUTE FOR LESSON VIDEO PLAYER ---
+    {
+      path: '/course/:courseId/lesson/:lessonId',
+      name: 'lesson',
+      component: LessonView,
+      props: true,
+    },
+    // -----------------------------------------
     {
       path: '/:pathMatch(.*)*',
       redirect: { name: 'home' }
