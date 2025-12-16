@@ -8,10 +8,10 @@ export const courses = [
     description: 'Improve your fluency, pronunciation, and confidence in daily English conversations.',
     progress: 0,
     lessons: [
-      { id: '1-1', title: 'The Art of Small Talk', completed: false, videoUrl: '#', content: 'Small talk fundamentals: Weather, weekends, and compliments.' },
-      { id: '1-2', title: 'Business Meeting Etiquette', completed: false, videoUrl: '#', content: 'Agreeing, disagreeing, and professional vocabulary like "Consensus".' },
-      { id: '1-3', title: 'Mastering Pronunciation: Vowels', completed: false, videoUrl: '#', content: 'Difference between short and long vowels (Ship vs Sheep).' },
-      { id: '1-4', title: 'Idioms and Slang', completed: false, videoUrl: '#', content: 'Common idioms like "Break a leg" and "Hit the hay".' },
+      { id: '1-1', title: 'The Art of Conversation', completed: false, videoUrl: 'https://youtu.be/xGhbhWUqL-w?si=m9Acks29GoAD8utH', content: 'Small talk fundamentals: Weather, weekends, and compliments.' },
+      { id: '1-2', title: 'English at Work', completed: false, videoUrl: 'https://youtu.be/KN2jyw6D1ak?si=SoeTa07xttAHhTMp', content: 'Agreeing, disagreeing, and professional vocabulary like "Consensus".' },
+      { id: '1-3', title: 'English Pronunciation Tips', completed: false, videoUrl: 'https://youtu.be/TNFKG0yvDx4?si=sIQNKC0c64qLW69L', content: 'Difference between short and long vowels (Ship vs Sheep).' },
+      { id: '1-4', title: 'What is the passive voice?', completed: false, videoUrl: 'https://youtu.be/7GSrQ4DX8gY?si=d98cnzjBAzX5i2LJ', content: 'Common idioms like "Break a leg" and "Hit the hay".' },
     ],
   },
   {
@@ -20,9 +20,9 @@ export const courses = [
     description: 'Essential vocabulary for Spain or Latin America. Order food and ask directions.',
     progress: 0,
     lessons: [
-      { id: '2-1', title: 'Greetings and Introductions', completed: false, videoUrl: '#', content: 'Hola, Buenos días, and Me llamo...' },
-      { id: '2-2', title: 'Ordering at a Restaurant', completed: false, videoUrl: '#', content: 'Una mesa para dos, La cuenta por favor.' },
-      { id: '2-3', title: 'Directions and Transport', completed: false, videoUrl: '#', content: 'Donde esta el bano? Izquierda, Derecha.' },
+      { id: '2-1', title: 'Introducing in Spanish', completed: false, videoUrl: 'https://youtu.be/kqJqukSrpFE?si=C5ti0PqzVVl60aey', content: 'Hola, Buenos días, and Me llamo...' },
+      { id: '2-2', title: 'Ordering at a Restaurant', completed: false, videoUrl: 'https://youtu.be/_hinoNCKEFU?si=FSTPsVBmRCqBVrhu', content: 'Una mesa para dos, La cuenta por favor.' },
+      { id: '2-3', title: 'Directions', completed: false, videoUrl: 'https://youtu.be/NI963NCIZJM?si=h8sOwmoandrf_4_k', content: 'Donde esta el bano? Izquierda, Derecha.' },
     ],
   },
   {
@@ -31,9 +31,9 @@ export const courses = [
     description: 'Master Hiragana, Katakana, and basic grammar structures.',
     progress: 0,
     lessons: [
-      { id: '3-1', title: 'Hiragana Basics', completed: false, videoUrl: '#', content: 'Reading the first rows: A, Ka, Sa, Ta, Na.' },
-      { id: '3-2', title: 'Self Introductions', completed: false, videoUrl: '#', content: 'Hajimemashite, Watashi no namae wa...' },
-      { id: '3-3', title: 'Numbers and Time', completed: false, videoUrl: '#', content: 'Counting 1-10 and telling time (ji).' },
+      { id: '3-1', title: 'Basic Japanese Words', completed: false, videoUrl: 'https://youtu.be/o9sP-vaCEa0?si=4n0Se0Ix0BPmvK8s', content: 'Learning the Basic Japanese Words' },
+      { id: '3-2', title: 'Self Introductions', completed: false, videoUrl: 'https://youtu.be/KAPMtzUwE7E?si=BflrcM6MzAIWzAlC', content: 'Hajimemashite, Watashi no namae wa...' },
+      { id: '3-3', title: 'Numbers in Japanese', completed: false, videoUrl: 'https://youtu.be/hUm4DFNXIDY?si=e4Ig8wsK94Iw55Af', content: 'Counting 1-10' },
     ],
   },
   {
@@ -42,9 +42,9 @@ export const courses = [
     description: 'Learn the language of love. Pronunciation and essential grammar.',
     progress: 0,
     lessons: [
-      { id: '4-1', title: 'Bonjour! Greetings', completed: false, videoUrl: '#', content: 'Bonjour, Bonsoir, Salut, Au revoir.' },
-      { id: '4-2', title: 'Numbers 1-20', completed: false, videoUrl: '#', content: 'Un, Deux, Trois... pay attention to silent letters.' },
-      { id: '4-3', title: 'Ordering a Croissant', completed: false, videoUrl: '#', content: 'Je voudrais un croissant, s\'il vous plaît.' }
+      { id: '4-1', title: 'Bonjour! Greetings', completed: false, videoUrl: 'https://youtu.be/TA2sOhFj_Xw?si=c7ZiacYQoTZprL22', content: 'Bonjour, Bonsoir, Salut, Au revoir.' },
+      { id: '4-2', title: 'Numbers 1-10', completed: false, videoUrl: 'https://youtu.be/kWQn2Hg2AHk?si=kcFbw8ZKUAkHwhCz', content: 'Un, Deux, Trois... pay attention to silent letters.' },
+      { id: '4-3', title: 'Ordering a Croissant', completed: false, videoUrl: 'https://youtu.be/-4p0fngSbUs?si=BDbhxax3_IKP1Rgj', content: 'Je voudrais un croissant, s\'il vous plaît.' }
     ]
   },
   {
@@ -53,8 +53,8 @@ export const courses = [
     description: 'Professional vocabulary, tones, and etiquette for working in China.',
     progress: 0,
     lessons: [
-      { id: '5-1', title: 'The 4 Tones', completed: false, videoUrl: '#', content: 'Flat, Rising, Dipping, Falling tones.' },
-      { id: '5-2', title: 'Business Cards', completed: false, videoUrl: '#', content: 'How to exchange cards with two hands.' }
+      { id: '5-1', title: 'The 4 Tones', completed: false, videoUrl: 'https://youtu.be/SqI3BCMIhJc?si=j5uXDNZpFwmks1IK', content: 'Flat, Rising, Dipping, Falling tones.' },
+      { id: '5-2', title: 'Business Vocabs', completed: false, videoUrl: 'https://youtu.be/852o7HvhM50?si=2S7y6tlSUY5FAAHB', content: 'Business Vocabs in Chinese' }
     ]
   },
   {
@@ -63,8 +63,8 @@ export const courses = [
     description: 'Deep dive into cases, articles, and sentence structure.',
     progress: 0,
     lessons: [
-      { id: '6-1', title: 'Der, Die, Das', completed: false, videoUrl: '#', content: 'Understanding Masculine, Feminine, and Neuter nouns.' },
-      { id: '6-2', title: 'V2 Rule', completed: false, videoUrl: '#', content: 'The verb must always be in the second position.' }
+      { id: '6-1', title: 'Der, Die, Das', completed: false, videoUrl: 'https://youtu.be/61_33WIZs9c?si=cqLn2sWJwCRxYN9y', content: 'Understanding Masculine, Feminine, and Neuter nouns.' },
+      { id: '6-2', title: 'Modal Verbs in German', completed: false, videoUrl: 'https://youtu.be/N9L5X2Xf-Bs?si=f8iylTav0PRYw57h', content: 'the concept of a modal verb, the sense of the five most important German modal verbs, the conjugation of these modal verbs and associated word order rules. It contains a worked example of the correct word order, as well as example sentences for each modal verb presented.' }
     ]
   },
   {
@@ -73,8 +73,8 @@ export const courses = [
     description: 'Read and write the Korean alphabet in hours.',
     progress: 0,
     lessons: [
-      { id: '7-1', title: 'Basic Vowels', completed: false, videoUrl: '#', content: 'Vertical and horizontal vowels (A, O, U, I).' },
-      { id: '7-2', title: 'Consonants', completed: false, videoUrl: '#', content: 'G, N, D, R, M, B, S, J, H.' }
+      { id: '7-1', title: 'Different Vowels but Same Pronunciation?', completed: false, videoUrl: 'https://youtu.be/Kmv0V9iPYZE?si=CQTiJ_BvKBs4cgLw', content: 'When you are learning Korean Hangul, You must face these confusing vowels! Today, we are going to clear those questions!' },
+      { id: '7-2', title: 'Consonants', completed: false, videoUrl: 'https://youtu.be/62_RhIsdqhw?si=MIOPZukkL36OmL8I', content: 'G, N, D, R, M, B, S, J, H.' }
     ]
   },
 
