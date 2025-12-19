@@ -19,7 +19,7 @@
 
     <section id="courses" class="catalog-section">
       <div class="section-header">
-        <h2>📚 Language Catalog</h2>
+        <h2>Language Catalog</h2>
         <p v-if="!searchQuery">Select a language below to begin your journey.</p>
         <p v-else>
           Showing results for "<strong>{{ searchQuery }}</strong>" 
@@ -244,4 +244,5 @@ const clearSearch = () => {
     font-size: 2.5rem;
   }
 }
+
 </style>
