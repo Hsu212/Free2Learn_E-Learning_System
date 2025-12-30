@@ -1,5 +1,5 @@
 ## F2L (Free2Learn) - Language Learning Platform
-F2L is a modern, immersive language learning web application designed for everyone. The platform offers a curated catalog of over 19 languages, featuring expert-led video lessons, progress tracking, and a personalized user experience.
+F2L🌿 is a modern, immersive language learning web application designed for everyone. The platform offers a curated catalog of over 19 languages, featuring expert-led video lessons, progress tracking, and a personalized user experience.
 
 ✨ Key Features
 Glassmorphism UI: A sleek, modern navigation bar using backdrop-blur effects for a premium feel.
