@@ -5,7 +5,7 @@
       <div class="hero-content">
         <h1 class="hero-title">Master any language, <span class="text-gradient">anywhere.</span></h1>
         <p class="hero-text">
-          Join 50,000+ students at Ton Duc Thang University breaking barriers through 
+          Join 50,000+ people at Free2Learn breaking barriers through 
           immersive, expert-led language training.
         </p>
         <div class="hero-btns">
@@ -179,3 +179,4 @@ const clearSearch = () => router.push({ name: 'home' });
 
 .empty-icon { font-size: 3rem; margin-bottom: 20px; }
 </style>
+
