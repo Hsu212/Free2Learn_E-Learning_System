@@ -44,7 +44,7 @@ Clone the repository:
 
 Bash
 
-git clone https://github.com/Hsu212/f2l-language-platform.git
+git clone https://github.com/Hsu212/Free2Learn_E-Learning_System.git
 cd f2l-language-platform
 Install dependencies:
 
