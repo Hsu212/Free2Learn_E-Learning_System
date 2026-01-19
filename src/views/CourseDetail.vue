@@ -1,10 +1,14 @@
 <template>
   <div class="course-detail-view" v-if="course">
+    
+    <div class="sticky-nav">
+      <router-link to="/home" class="back-link">
+        <span class="arrow">←</span> Back to Courses
+      </router-link>
+    </div>
+
     <div class="detail-header">
       <div class="header-content">
-        <router-link to="/home" class="back-link">
-          <span class="arrow">←</span> Back to Courses
-        </router-link>
         <h1>{{ course.title }}</h1>
         <p class="course-desc">{{ course.description }}</p>
       </div>
@@ -97,19 +101,13 @@ const selectedLessonId = ref(null);
 
 // --- NEW HELPER FUNCTION ---
 const getEmbedUrl = (url) => {
-  // If url is missing, empty, or just a placeholder '#', return null
   if (!url || url === '#') return null;
-
-  // Regex to find the video ID from various YouTube URL formats
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
-
-  // Return the embed URL if we find a valid ID (11 chars)
   return (match && match[2].length === 11)
     ? `https://www.youtube.com/embed/${match[2]}`
     : null;
 };
-// ---------------------------
 
 const loadCourse = (id) => {
   const courseData = getCourseById(id);
@@ -155,6 +153,40 @@ const toggleCompletion = () => {
   padding: 30px 20px;
 }
 
+/* 3. NEW STYLES FOR STICKY NAV */
+.sticky-nav {
+  position: sticky;
+  top: 20px; /* Distance from top of browser */
+  z-index: 100; /* Stays on top of content */
+  margin-bottom: 20px;
+  pointer-events: none; /* Lets clicks pass through the empty space around button */
+}
+
+/* Updated Back Link to look like a floating pill button */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  background: var(--bg-card); /* Card background so text doesn't show through */
+  padding: 10px 20px;
+  border-radius: 30px; /* Pill shape */
+  box-shadow: var(--shadow-md); /* Pop out effect */
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+  pointer-events: auto; /* Re-enable clicking on the button itself */
+  transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.back-link:hover { 
+  color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.arrow { margin-right: 8px; }
+
 /* Header Styles */
 .detail-header {
   background: var(--bg-card);
@@ -171,16 +203,8 @@ const toggleCompletion = () => {
 }
 
 .header-content { flex: 1; min-width: 300px; }
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  font-weight: 500;
-  margin-bottom: 15px;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-.back-link:hover { color: var(--primary-color); }
-.arrow { margin-right: 5px; }
+/* Removed old .back-link styles from here */
+
 .detail-header h1 { font-size: 2rem; margin-bottom: 10px; color: var(--text-main); }
 .course-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0; }
 
@@ -227,7 +251,7 @@ const toggleCompletion = () => {
   border: 1px solid var(--border-color);
   overflow: hidden;
   position: sticky;
-  top: 100px;
+  top: 100px; /* This ensures sidebar doesn't overlap the new sticky button */
 }
 .sidebar-header {
   padding: 20px;
