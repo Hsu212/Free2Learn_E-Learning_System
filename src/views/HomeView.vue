@@ -9,8 +9,37 @@
           immersive, expert-led language training.
         </p>
         <div class="hero-btns">
-          <button class="cta-button primary" @click="scrollToCourses">Explore Catalog</button>
-          <button class="cta-button secondary">How it works</button>
+          <button class="cta-button primary" @click="scrollToSection('courses')">Explore Catalog</button>
+          <button class="cta-button secondary" @click="scrollToSection('how-it-works')">How it works</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works-section">
+      <div class="hiw-container">
+        <div class="section-header">
+          <h2 class="text-gradient">How it works</h2>
+          <p>Start your journey to fluency in three simple steps.</p>
+        </div>
+        
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3>Choose your Path</h3>
+            <p>Select from over 19 languages tailored for your skill level, from absolute beginner to advanced conversation.</p>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3>Immersive Learning</h3>
+            <p>Watch expert-led video lessons and track your progress through our interactive dashboard.</p>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3>Track & Master</h3>
+            <p>Save your favorite courses, mark lessons as complete, and build your personal learning library.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -35,6 +64,7 @@
             :key="course.id"
             :course="course"
             @view-course="goToCourseDetail"
+            :id="'course-' + course.id"
           />
         </div>
 
@@ -49,7 +79,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, nextTick } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import CourseCard from '@/components/CourseCard.vue';
 import CourseRecommendations from '@/components/CourseRecommendations.vue';
@@ -74,14 +104,31 @@ const goToCourseDetail = (courseId) => {
   router.push({ name: 'course', params: { id: courseId } });
 };
 
-const scrollToCourses = () => {
-  document.getElementById('courses').scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Generic Scroll Function for Hero Buttons
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 };
 
 const clearSearch = () => router.push({ name: 'home' });
+
+// "Back to Course" Logic: Scrolls to specific course if Hash exists
+onMounted(() => {
+  if (route.hash) {
+    nextTick(() => {
+      const element = document.querySelector(route.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+      }
+    });
+  }
+});
 </script>
 
 <style scoped>
+/* HERO STYLES */
 .hero-section {
   position: relative;
   min-height: 90vh;
@@ -90,7 +137,7 @@ const clearSearch = () => router.push({ name: 'home' });
   justify-content: center;
   padding: 40px 20px;
   overflow: hidden;
-  background-color: #020617; /* Deep dark base */
+  background-color: #020617; 
 }
 
 .hero-mesh {
@@ -139,6 +186,7 @@ const clearSearch = () => router.push({ name: 'home' });
   font-weight: 700;
   font-size: 1rem;
   border: none;
+  cursor: pointer;
 }
 
 .cta-button.primary {
@@ -154,6 +202,78 @@ const clearSearch = () => router.push({ name: 'home' });
   border: 1px solid rgba(255,255,255,0.1);
 }
 
+.cta-button.secondary:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* HOW IT WORKS STYLES */
+.how-it-works-section {
+  padding: 80px 20px;
+  background-color: #0f172a;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.hiw-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.section-header p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.step-card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 40px 30px;
+  border-radius: 20px;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+}
+
+.step-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(16, 185, 129, 0.2);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.step-card h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.step-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* CATALOG STYLES */
 .catalog-section { padding: 100px 20px; }
 .catalog-container { max-width: 1200px; margin: 0 auto; }
 
@@ -179,4 +299,3 @@ const clearSearch = () => router.push({ name: 'home' });
 
 .empty-icon { font-size: 3rem; margin-bottom: 20px; }
 </style>
-
