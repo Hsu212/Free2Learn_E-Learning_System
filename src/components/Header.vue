@@ -1,8 +1,8 @@
 <template>
   <header class="main-header">
     <div class="container">
-      <div class="logo">
-        <router-link to="/">F2L<span class="logo-icon">🌿</span></router-link>
+      <div class="logo" @click="goHome">
+        <a class="logo-link">F2L<span class="logo-icon">🌿</span></a>
       </div>
 
       <div class="search-container">
@@ -107,19 +107,30 @@ const isDark = ref(false);
 const searchQuery = ref('');
 const showSidebar = ref(false);
 
-// Sync search input with URL query params (so refreshing keeps the search)
 watch(() => route.query.search, (newVal) => {
   searchQuery.value = newVal || '';
 }, { immediate: true });
 
-// Handle typing in search bar
 const handleSearch = () => {
   if (route.name !== 'home') {
-    // If not on home, go there
     router.push({ name: 'home', query: { search: searchQuery.value } });
   } else {
-    // If on home, just update the URL without reloading
     router.replace({ query: { ...route.query, search: searchQuery.value } });
+  }
+};
+
+// UPDATED: Logic to handle Logo click
+const goHome = () => {
+  if (route.name === 'home') {
+    // If already on home, scroll to top nicely
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Remove any hash (like #course-1) from the URL without reloading
+    if (route.hash) {
+      router.replace({ name: 'home', query: route.query, hash: '' });
+    }
+  } else {
+    // If elsewhere, just go home
+    router.push({ name: 'home' });
   }
 };
 
@@ -145,7 +156,6 @@ const toggleTheme = () => {
 };
 
 onMounted(() => {
-  // Check for saved theme preference
   const savedTheme = localStorage.getItem('user-theme');
   if (savedTheme === 'dark') {
     isDark.value = true;
@@ -175,7 +185,13 @@ onMounted(() => {
   gap: 20px;
 }
 
-.logo a {
+/* UPDATED: Added cursor pointer to the logo div */
+.logo {
+  cursor: pointer;
+}
+
+/* UPDATED: Selector to target the new anchor tag class */
+.logo-link {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--primary-color);
