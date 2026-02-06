@@ -9,11 +9,11 @@
         <input 
           type="text" 
           v-model="searchQuery" 
-          @input="handleSearch" 
+          @keydown.enter="handleSearch" 
           placeholder="Search courses..." 
           class="search-input"
         />
-        <span class="search-icon">🔍</span>
+        <span class="search-icon" @click="handleSearch">🔍</span>
       </div>
       
       <nav class="nav-links">
@@ -107,29 +107,46 @@ const isDark = ref(false);
 const searchQuery = ref('');
 const showSidebar = ref(false);
 
+// Sync input with URL query params (so refreshing doesn't lose the search)
 watch(() => route.query.search, (newVal) => {
   searchQuery.value = newVal || '';
 }, { immediate: true });
 
-const handleSearch = () => {
-  if (route.name !== 'home') {
-    router.push({ name: 'home', query: { search: searchQuery.value } });
+// FIXED: Search Handler
+const handleSearch = async () => {
+  // 1. Prepare the query object
+  const query = { ...route.query };
+  
+  if (searchQuery.value) {
+    query.search = searchQuery.value;
   } else {
-    router.replace({ query: { ...route.query, search: searchQuery.value } });
+    delete query.search; // Remove param if empty
   }
+
+  // 2. Navigate or Replace URL
+  if (route.name !== 'home') {
+    await router.push({ name: 'home', query: { search: searchQuery.value } });
+  } else {
+    await router.replace({ query });
+  }
+
+  // 3. SCROLL to the results (This is why it felt like it wasn't working!)
+  setTimeout(() => {
+    const coursesSection = document.getElementById('courses');
+    if (coursesSection) {
+      coursesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100);
 };
 
-// UPDATED: Logic to handle Logo click
 const goHome = () => {
   if (route.name === 'home') {
-    // If already on home, scroll to top nicely
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // Remove any hash (like #course-1) from the URL without reloading
-    if (route.hash) {
-      router.replace({ name: 'home', query: route.query, hash: '' });
+    if (route.hash || route.query.search) {
+      // Clear search and hash when clicking logo
+      router.replace({ name: 'home' });
     }
   } else {
-    // If elsewhere, just go home
     router.push({ name: 'home' });
   }
 };
@@ -185,12 +202,10 @@ onMounted(() => {
   gap: 20px;
 }
 
-/* UPDATED: Added cursor pointer to the logo div */
 .logo {
   cursor: pointer;
 }
 
-/* UPDATED: Selector to target the new anchor tag class */
 .logo-link {
   font-size: 1.5rem;
   font-weight: 800;
@@ -233,8 +248,15 @@ onMounted(() => {
   position: absolute;
   left: 15px;
   color: var(--text-muted);
-  pointer-events: none;
   font-size: 0.9rem;
+  /* UPDATED: Made icon clickable */
+  cursor: pointer; 
+  pointer-events: auto;
+  transition: color 0.2s;
+}
+
+.search-icon:hover {
+  color: var(--primary-color);
 }
 
 /* --- NAV LINKS & BUTTONS --- */
